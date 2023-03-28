@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodewebapp-deployment 
+  labels: 
+    run: nodeapp
+spec:
+  replicas: 2
+  selector: 
+    matchLabels: 
+      run: nodeapp
+  template:
+    metadata:
+      labels:
+        run: nodeapp
+    spec:
+      containers:
+      - name: nodewebcontainer
+        image: signin/nodewebapp:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
